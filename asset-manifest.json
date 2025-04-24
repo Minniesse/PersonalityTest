@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/PersonalityTest/static/css/main.2e69706a.css",
+    "main.js": "/PersonalityTest/static/js/main.9815945b.js",
+    "static/js/453.81968a21.chunk.js": "/PersonalityTest/static/js/453.81968a21.chunk.js",
+    "static/media/background.png": "/PersonalityTest/static/media/background.f1ad55036cb3b799f069.png",
+    "static/media/forest-bg.png": "/PersonalityTest/static/media/forest-bg.408a2eff95c72fdedd05.png",
+    "static/media/butterfly.png": "/PersonalityTest/static/media/butterfly.9fee521c9de760d93a2a.png",
+    "static/media/owl.png": "/PersonalityTest/static/media/owl.36838fd7b621759e87aa.png",
+    "static/media/wolf.png": "/PersonalityTest/static/media/wolf.be4a2cdaded4156e566a.png",
+    "static/media/eagle.png": "/PersonalityTest/static/media/eagle.899dbcae725a36b516c5.png",
+    "static/media/spider.png": "/PersonalityTest/static/media/spider.582d317a0c386c63805f.png",
+    "static/media/beaver.png": "/PersonalityTest/static/media/beaver.8d6f38a2eb1d4675fa51.png",
+    "static/media/dog.png": "/PersonalityTest/static/media/dog.eee23e046433a14c4a46.png",
+    "static/media/horse.png": "/PersonalityTest/static/media/horse.874834cecaa4401bccd6.png",
+    "static/media/turtle.png": "/PersonalityTest/static/media/turtle.0fa601587f76e498ed75.png",
+    "static/media/elephant.png": "/PersonalityTest/static/media/elephant.0dc3e824fcb4efe92713.png",
+    "static/media/fox.png": "/PersonalityTest/static/media/fox.c59cd9674d5d41da153c.png",
+    "static/media/snake.png": "/PersonalityTest/static/media/snake.e846a790ee646e570ba5.png",
+    "static/media/otter.png": "/PersonalityTest/static/media/otter.a0a93fd59436ac68e69b.png",
+    "static/media/crow.png": "/PersonalityTest/static/media/crow.bcabd29e3a10a56cf6e9.png",
+    "static/media/deer.png": "/PersonalityTest/static/media/deer.6d29244eb10b568e16c1.png",
+    "static/media/penguin.png": "/PersonalityTest/static/media/penguin.a9a3ffe6054fb7d5fb88.png",
+    "static/media/dolphin.png": "/PersonalityTest/static/media/dolphin.9d16d2669070ee9a0b07.png",
+    "static/media/wood-texture.png": "/PersonalityTest/static/media/wood-texture.286634f1d56eb8663f3b.png",
+    "index.html": "/PersonalityTest/index.html",
+    "main.2e69706a.css.map": "/PersonalityTest/static/css/main.2e69706a.css.map",
+    "main.9815945b.js.map": "/PersonalityTest/static/js/main.9815945b.js.map",
+    "453.81968a21.chunk.js.map": "/PersonalityTest/static/js/453.81968a21.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2e69706a.css",
+    "static/js/main.9815945b.js"
+  ]
+}
