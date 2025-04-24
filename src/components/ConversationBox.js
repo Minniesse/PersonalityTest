@@ -54,7 +54,7 @@ const ConversationBox = ({ question, onAnswerSelected }) => {
             }}
           />
         </div>
-        <div className="chat-title">Fox Guide</div>
+        <div className="chat-title">Personality Test</div>
       </div>
       
       <div className="chat-body">

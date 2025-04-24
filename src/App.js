@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
 import questions from './data/questions';
 import animalProfiles from './data/animalProfiles';
 import ConversationBox from './components/ConversationBox';
+import React from 'react';
 
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -168,6 +169,21 @@ function ResultsSection({ primaryAnimal, secondaryAnimal, animalProfiles, onRest
   const primaryProfile = animalProfiles[primaryAnimal];
   const secondaryProfile = animalProfiles[secondaryAnimal];
   
+  // Add useEffect to hide scrollbar
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      .results-container::-webkit-scrollbar {
+        display: none;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+  
   // Animation variants for results elements
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -183,6 +199,15 @@ function ResultsSection({ primaryAnimal, secondaryAnimal, animalProfiles, onRest
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: { y: 0, opacity: 1 }
+  };
+
+  // Get the correct animal image or use a fallback
+  const getAnimalImage = () => {
+    const availableAnimals = ['Bear', 'Fox', 'Lion', 'Butterfly', 'Elephant', 'Dolphin', 'Owl', 'Wolf', 'Elephant', 'Fox', 'Dog', 'Otter', 'Penguin', 'Spider', 'Crow', 'Eagle', 'Beaver', 'Cat', 'Horse', 'Deer', 'Turtle', 'Snake']; // Animals we have images for
+    if (availableAnimals.includes(primaryAnimal)) {
+      // return ` require('./animals/dolphin.png')`;
+      return require(`./animals/${primaryAnimal.toLowerCase()}.png`);
+    } 
   };
   
   return (
@@ -200,13 +225,53 @@ function ResultsSection({ primaryAnimal, secondaryAnimal, animalProfiles, onRest
           boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
           padding: '30px',
           maxHeight: '90vh',
-          overflow: 'auto'
+          overflow: 'auto',
+          scrollbarWidth: 'none', // Firefox
+          msOverflowStyle: 'none', // IE and Edge
         }}
       >
         <motion.div variants={itemVariants}>
           <h2 style={{ color: '#4a6741', textAlign: 'center', marginBottom: '24px' }}>
             Your Animal Spirit Revealed!
           </h2>
+          
+          {/* Animal picture in circle */}
+          <motion.div 
+            variants={itemVariants}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+            style={{
+              width: '150px',
+              height: '150px',
+              borderRadius: '50%',
+              overflow: 'hidden',
+              margin: '0 auto 25px',
+              border: '3px solid #4a6741',
+              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.15)',
+              backgroundColor: '#fbd38d',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <img 
+              src={getAnimalImage()}
+              alt={primaryAnimal}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = `https://via.placeholder.com/150?text=${primaryAnimal}`;
+              }}
+            />
+          </motion.div>
+          {/* <div style={{ textAlign: 'center', marginBottom: '20px', backgroundColor: "red", width: "100px", height: "100px"}}>
+            <img src="/animals/dolphin.png" alt="dol"/>
+            sjsjjs
+          </div> */}
+          {/* <img src="https://reactjs.org/logo-og.png" alt="React Image" />
+          <img src={ require('./animals/dolphin.png')} alt="dolphin"/> */}
+
           <p style={{ fontStyle: 'italic', textAlign: 'center', marginBottom: '30px', color: '#5d4037' }}>
             The journey has uncovered your true nature
           </p>
@@ -227,18 +292,35 @@ function ResultsSection({ primaryAnimal, secondaryAnimal, animalProfiles, onRest
           
           <div className="traits-container">
             <h4>Key Traits:</h4>
-            <ul>
+            <div style={{ 
+              display: 'flex', 
+              flexWrap: 'wrap', 
+              gap: '10px', 
+              marginTop: '15px',
+              marginBottom: '20px',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
               {primaryProfile.keyTraits.map((trait, index) => (
-                <motion.li 
+                <motion.div
                   key={index}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
+                  style={{
+                    backgroundColor: '#4a6741',
+                    color: 'white',
+                    padding: '8px 16px',
+                    borderRadius: '20px',
+                    fontSize: '0.95rem',
+                    fontWeight: '500',
+                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+                  }}
                 >
                   {trait}
-                </motion.li>
+                </motion.div>
               ))}
-            </ul>
+            </div>
           </div>
           
           <div className="details-container">
@@ -279,9 +361,10 @@ function ResultsSection({ primaryAnimal, secondaryAnimal, animalProfiles, onRest
           variants={itemVariants}
           style={{
             display: 'flex',
-            flexDirection: 'row',
+            flexDirection: 'column',
+            alignItems: 'center',
             gap: '15px',
-            justifyContent: 'center'
+            margin: '0 auto'
           }}
         >
           <motion.button 
@@ -296,7 +379,8 @@ function ResultsSection({ primaryAnimal, secondaryAnimal, animalProfiles, onRest
               border: 'none',
               fontSize: '1rem',
               cursor: 'pointer',
-              width: '180px'
+              width: '180px',
+              marginBottom: '10px'
             }}
           >
             Share My Results
